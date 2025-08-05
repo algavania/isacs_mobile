@@ -23,7 +23,7 @@
   "seeMore": "Lihat Selengkapnya",
   "seeStats": "Lihat Statistik",
   "electricityConsumption": "Konsumsi Listrik",
-  "barn": "Barn",
+  "barn": "Kandang",
   "home": "Beranda",
   "statistics": "Statistik",
   "settings": "Pengaturan",
@@ -38,5 +38,9 @@
   "notification": "Notifikasi",
   "machineMaintenance": "Perawatan Mesin",
   "electricityLimit": "Batas Listrik",
-  "hotTemperature": "Suhu Panas"
+  "hotTemperature": "Suhu Panas",
+  "machine": "Mesin",
+  "overload": "Kelebihan Beban",
+  "hours": "jam",
+  "kwh": "kWh"
 }

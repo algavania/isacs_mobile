@@ -33,6 +33,21 @@ class AppThemeData {
         centerTitle: false,
         surfaceTintColor: Colors.transparent,
       ),
+      switchTheme: SwitchThemeData(
+        thumbColor: WidgetStateProperty.all<Color>(ColorValues.white),
+        trackColor: const WidgetStateProperty.fromMap(
+          {
+            WidgetState.selected: ColorValues.primary30,
+            WidgetState.any: ColorValues.grey20,
+          },
+        ),
+        trackOutlineColor: const WidgetStateProperty.fromMap(
+          {
+            WidgetState.selected: ColorValues.white,
+            WidgetState.any: Colors.transparent,
+          },
+        ),
+      ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         elevation: 0,
         showSelectedLabels: true,

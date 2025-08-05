@@ -104,8 +104,10 @@ class _SplashPageState extends State<SplashPage> {
           'assets/images/logo.png',
           height: 40,
         ),
-        Text(context.l10n.isacs,
-            style: Theme.of(context).textTheme.titleMedium),
+        Text(
+          context.l10n.isacs,
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
       ],
     );
   }
@@ -141,7 +143,9 @@ class _SplashPageState extends State<SplashPage> {
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: Styles.defaultPadding),
+              padding: const EdgeInsets.symmetric(
+                vertical: Styles.defaultPadding,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 spacing: Styles.largerSpacing,

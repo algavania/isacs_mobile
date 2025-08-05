@@ -16,9 +16,10 @@ class ColorValues {
 
   static const grey70 = Color(0xFF393B3D);
   static const grey50 = Color(0xFF5F6265);
+  static const grey40 = Color(0xFF7F8184);
   static const grey30 = Color(0xFF9FA1A3);
   static const grey20 = Color(0xFFBFC0C1);
-  static const grey10 = Color(0xFFDFE0E0);
+  static const grey10 = Color(0xFFE3E3E3);
   static const grey05 = Color(0xFFF5F5F5);
 
   static const text50 = Color(0xFF131414);
