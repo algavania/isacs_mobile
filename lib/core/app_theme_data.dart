@@ -29,6 +29,11 @@ class AppThemeData {
       scaffoldBackgroundColor: ColorValues.white,
       canvasColor: ColorValues.white,
       brightness: Brightness.light,
+      chipTheme: ChipThemeData(
+        backgroundColor: ColorValues.grey30,
+        selectedColor: ColorValues.primary50,
+        color: WidgetStatePropertyAll<Color>(ColorValues.white),
+      ),
       appBarTheme: const AppBarTheme(
         centerTitle: false,
         surfaceTintColor: Colors.transparent,

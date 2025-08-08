@@ -42,5 +42,11 @@
   "machine": "Mesin",
   "overload": "Kelebihan Beban",
   "hours": "jam",
-  "kwh": "kWh"
+  "kwh": "kWh",
+  "month": "Bulan",
+  "analysis": "Analisis",
+  "today": "Hari Ini",
+  "yesterday": "Kemarin",
+  "thisWeek": "Minggu Ini",
+  "analyzeAgain": "Analisis Lagi"
 }

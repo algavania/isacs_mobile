@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "804023191711",
+    "firebase_url": "https://interstellar-iot-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "interstellar-iot",
+    "storage_bucket": "interstellar-iot.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804023191711:android:150f893b82c1a65c9abaaa",
+        "android_client_info": {
+          "package_name": "com.interstellar.isacs"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCRhmj7vKf4OJkGmV-3RHVyjNVpIetQc8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

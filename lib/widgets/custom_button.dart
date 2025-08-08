@@ -51,7 +51,7 @@ class _CustomButtonState extends State<CustomButton> {
           backgroundColor:
               widget.isWhiteButton ? Colors.white : widget.backgroundColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(Styles.largeBorder),
+            borderRadius: BorderRadius.circular(Styles.defaultBorder),
             side: BorderSide(
               color: widget.borderColor ??
                   (widget.isWhiteButton

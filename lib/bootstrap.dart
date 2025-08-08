@@ -2,7 +2,11 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_gemini/flutter_gemini.dart';
+import 'package:isacs_mobile/firebase_options.dart';
 import 'package:isacs_mobile/injector/injector.dart';
 
 class AppBlocObserver extends BlocObserver {
@@ -32,5 +36,10 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   Injector.init();
   await Injector.instance.allReady();
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await dotenv.load();
+  Gemini.init(apiKey: dotenv.env['GEMINI_API_KEY'] ?? '');
   runApp(await builder());
 }

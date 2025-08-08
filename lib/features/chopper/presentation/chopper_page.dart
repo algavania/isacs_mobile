@@ -1,9 +1,14 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:isacs_mobile/core/color_values.dart';
 import 'package:isacs_mobile/core/styles.dart';
 import 'package:isacs_mobile/features/chopper/data/machine_activity_model.dart';
+import 'package:isacs_mobile/features/chopper/presentation/cubit/chopper_cubit.dart';
+import 'package:isacs_mobile/injector/injector.dart';
 import 'package:isacs_mobile/l10n/l10n.dart';
+import 'package:isacs_mobile/routes/router.dart';
 import 'package:isacs_mobile/util/extensions.dart';
 import 'package:isacs_mobile/widgets/card_data_widget.dart';
 import 'package:isacs_mobile/widgets/circular_chart_widget.dart';
@@ -18,7 +23,7 @@ class ChopperPage extends StatefulWidget {
 }
 
 class _ChopperPageState extends State<ChopperPage> {
-  var _machineStatus = true;
+  final _cubit = Injector.instance<ChopperCubit>();
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +55,8 @@ class _ChopperPageState extends State<ChopperPage> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (_, i) => CardDataWidget(data: list[i]),
-        separatorBuilder: (_, __) => const SizedBox(
+        separatorBuilder: (_, __) =>
+        const SizedBox(
           height: Styles.defaultSpacing,
         ),
         itemCount: list.length,
@@ -62,7 +68,9 @@ class _ChopperPageState extends State<ChopperPage> {
     return SectionWidget(
       title: context.l10n.machineMaintenance,
       subtitle: context.l10n.seeStats,
-      onSubtitleTap: () {},
+      onSubtitleTap: () {
+        AutoRouter.of(context).navigate(const StatisticsRoute());
+      },
       child: Column(
         spacing: Styles.largeSpacing,
         children: [
@@ -98,43 +106,52 @@ class _ChopperPageState extends State<ChopperPage> {
   }
 
   Widget _buildChopperToggleWidget() {
-    return Container(
-      padding: const EdgeInsets.all(Styles.defaultPadding),
-      decoration: BoxDecoration(
-        color: ColorValues.primary50,
-        borderRadius: BorderRadius.circular(Styles.defaultBorder),
-      ),
-      child: Row(
-        spacing: Styles.defaultSpacing,
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  context.l10n.chopperMachine,
-                  style: context.textTheme.titleMedium
-                      ?.copyWith(color: ColorValues.white),
-                ),
-                Text(
-                  _machineStatus ? context.l10n.on : context.l10n.off,
-                  style: const TextStyle(
-                    color: ColorValues.white,
-                  ),
-                ),
-              ],
-            ),
+    return BlocBuilder<ChopperCubit, ChopperState>(
+      builder: (context, state) {
+        return Container(
+          padding: const EdgeInsets.all(Styles.defaultPadding),
+          decoration: BoxDecoration(
+            color: ColorValues.primary50,
+            borderRadius: BorderRadius.circular(Styles.defaultBorder),
           ),
-          Switch(
-            value: _machineStatus,
-            onChanged: (v) {
-              setState(() {
-                _machineStatus = v;
-              });
-            },
+          child: Row(
+            spacing: Styles.defaultSpacing,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      context.l10n.chopperMachine,
+                      style: context.textTheme.titleMedium
+                          ?.copyWith(color: ColorValues.white),
+                    ),
+                    Text(
+                      state.chopperStatus
+                          .maybeMap(
+                            orElse: () => context.l10n.off,
+                            data: (value) => value.data
+                                ? context.l10n.on
+                                : context.l10n.off,
+                          ),
+                      style: const TextStyle(
+                        color: ColorValues.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Switch(
+                value: state.chopperStatus
+                    .maybeMap(orElse: () => false, data: (value) => value.data),
+                onChanged: (v) {
+                  _cubit.setChopperStatus(status: v);
+                },
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

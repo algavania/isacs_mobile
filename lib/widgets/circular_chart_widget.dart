@@ -11,6 +11,7 @@ class CircularChartWidget extends StatelessWidget {
     required this.child,
     required this.max,
     required this.value,
+    this.color,
     super.key,
   });
 
@@ -19,6 +20,7 @@ class CircularChartWidget extends StatelessWidget {
   final Widget child;
   final double max;
   final double value;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +44,22 @@ class CircularChartWidget extends StatelessWidget {
     return Column(
       spacing: Styles.defaultSpacing,
       children: [
-        Text(header, textAlign: TextAlign.center,),
+        Text(
+          header,
+          textAlign: TextAlign.center,
+          style: context.textTheme.titleMedium?.copyWith(fontSize: 14),
+        ),
         CircularPercentIndicator(
+          circularStrokeCap: CircularStrokeCap.round,
           radius: 60,
           lineWidth: 12,
           percent: value / max,
-          center: Text(title, style: context.textTheme.titleMedium,),
-          progressColor: ColorValues.primary50,
-          backgroundColor: Color(0xFFF1F1F1),
+          center: Text(
+            title,
+            style: context.textTheme.titleMedium,
+          ),
+          progressColor: color ?? ColorValues.primary50,
+          backgroundColor: const Color(0xFFF1F1F1),
         ),
       ],
     );

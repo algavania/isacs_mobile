@@ -68,7 +68,7 @@ class _CardDataWidgetState extends State<CardDataWidget> {
                     text: TextSpan(
                       text: '${context.l10n.machine} ',
                       style: context.textTheme.bodyMedium?.copyWith(
-                        fontSize: 18
+                        fontSize: 18,
                       ),
                       children: [
                         TextSpan(
@@ -81,9 +81,12 @@ class _CardDataWidgetState extends State<CardDataWidget> {
                     ),
                   ),
                 ),
-                Text(date, style: context.textTheme.bodySmall?.copyWith(
-                  color: ColorValues.grey40
-                ),),
+                Text(
+                  date,
+                  style: context.textTheme.bodySmall?.copyWith(
+                    color: ColorValues.grey40,
+                  ),
+                ),
               ],
             ),
           ],
@@ -134,7 +137,7 @@ class _CardDataWidgetState extends State<CardDataWidget> {
                 TextSpan(
                   text: content,
                   style: context.textTheme.titleMedium?.copyWith(
-                    color: ColorValues.primary50
+                    color: ColorValues.primary50,
                   ),
                 ),
                 TextSpan(
