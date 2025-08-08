@@ -5,6 +5,7 @@ class BarnState with _$BarnState {
   const factory BarnState({
     required AsyncValue<num> temperature,
     required AsyncValue<num> humidity,
+    required AsyncValue<DateTime> lastUpdated,
     required AsyncValue<num> coolLimit,
     required AsyncValue<num> idealLimit,
     required AsyncValue<num> hotLimit,

@@ -19,6 +19,13 @@ mixin _$SettingsState {
   AsyncValue<bool> get machineMaintenance => throw _privateConstructorUsedError;
   AsyncValue<bool> get electricityLimit => throw _privateConstructorUsedError;
   AsyncValue<bool> get hotTemperature => throw _privateConstructorUsedError;
+  AsyncValue<num> get machineInterval => throw _privateConstructorUsedError;
+  AsyncValue<num> get electricityPrice => throw _privateConstructorUsedError;
+  AsyncValue<num> get maxKwh => throw _privateConstructorUsedError;
+  AsyncValue<num> get coolLimit => throw _privateConstructorUsedError;
+  AsyncValue<num> get idealLimit => throw _privateConstructorUsedError;
+  AsyncValue<num> get hotLimit => throw _privateConstructorUsedError;
+  AsyncValue<String> get telegramUsername => throw _privateConstructorUsedError;
 
   /// Create a copy of SettingsState
   /// with the given fields replaced by the non-null parameter values.
@@ -36,11 +43,25 @@ abstract class $SettingsStateCopyWith<$Res> {
   $Res call(
       {AsyncValue<bool> machineMaintenance,
       AsyncValue<bool> electricityLimit,
-      AsyncValue<bool> hotTemperature});
+      AsyncValue<bool> hotTemperature,
+      AsyncValue<num> machineInterval,
+      AsyncValue<num> electricityPrice,
+      AsyncValue<num> maxKwh,
+      AsyncValue<num> coolLimit,
+      AsyncValue<num> idealLimit,
+      AsyncValue<num> hotLimit,
+      AsyncValue<String> telegramUsername});
 
   $AsyncValueCopyWith<bool, $Res> get machineMaintenance;
   $AsyncValueCopyWith<bool, $Res> get electricityLimit;
   $AsyncValueCopyWith<bool, $Res> get hotTemperature;
+  $AsyncValueCopyWith<num, $Res> get machineInterval;
+  $AsyncValueCopyWith<num, $Res> get electricityPrice;
+  $AsyncValueCopyWith<num, $Res> get maxKwh;
+  $AsyncValueCopyWith<num, $Res> get coolLimit;
+  $AsyncValueCopyWith<num, $Res> get idealLimit;
+  $AsyncValueCopyWith<num, $Res> get hotLimit;
+  $AsyncValueCopyWith<String, $Res> get telegramUsername;
 }
 
 /// @nodoc
@@ -61,6 +82,13 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
     Object? machineMaintenance = null,
     Object? electricityLimit = null,
     Object? hotTemperature = null,
+    Object? machineInterval = null,
+    Object? electricityPrice = null,
+    Object? maxKwh = null,
+    Object? coolLimit = null,
+    Object? idealLimit = null,
+    Object? hotLimit = null,
+    Object? telegramUsername = null,
   }) {
     return _then(_value.copyWith(
       machineMaintenance: null == machineMaintenance
@@ -75,6 +103,34 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
           ? _value.hotTemperature
           : hotTemperature // ignore: cast_nullable_to_non_nullable
               as AsyncValue<bool>,
+      machineInterval: null == machineInterval
+          ? _value.machineInterval
+          : machineInterval // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<num>,
+      electricityPrice: null == electricityPrice
+          ? _value.electricityPrice
+          : electricityPrice // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<num>,
+      maxKwh: null == maxKwh
+          ? _value.maxKwh
+          : maxKwh // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<num>,
+      coolLimit: null == coolLimit
+          ? _value.coolLimit
+          : coolLimit // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<num>,
+      idealLimit: null == idealLimit
+          ? _value.idealLimit
+          : idealLimit // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<num>,
+      hotLimit: null == hotLimit
+          ? _value.hotLimit
+          : hotLimit // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<num>,
+      telegramUsername: null == telegramUsername
+          ? _value.telegramUsername
+          : telegramUsername // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<String>,
     ) as $Val);
   }
 
@@ -107,6 +163,76 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
       return _then(_value.copyWith(hotTemperature: value) as $Val);
     });
   }
+
+  /// Create a copy of SettingsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AsyncValueCopyWith<num, $Res> get machineInterval {
+    return $AsyncValueCopyWith<num, $Res>(_value.machineInterval, (value) {
+      return _then(_value.copyWith(machineInterval: value) as $Val);
+    });
+  }
+
+  /// Create a copy of SettingsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AsyncValueCopyWith<num, $Res> get electricityPrice {
+    return $AsyncValueCopyWith<num, $Res>(_value.electricityPrice, (value) {
+      return _then(_value.copyWith(electricityPrice: value) as $Val);
+    });
+  }
+
+  /// Create a copy of SettingsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AsyncValueCopyWith<num, $Res> get maxKwh {
+    return $AsyncValueCopyWith<num, $Res>(_value.maxKwh, (value) {
+      return _then(_value.copyWith(maxKwh: value) as $Val);
+    });
+  }
+
+  /// Create a copy of SettingsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AsyncValueCopyWith<num, $Res> get coolLimit {
+    return $AsyncValueCopyWith<num, $Res>(_value.coolLimit, (value) {
+      return _then(_value.copyWith(coolLimit: value) as $Val);
+    });
+  }
+
+  /// Create a copy of SettingsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AsyncValueCopyWith<num, $Res> get idealLimit {
+    return $AsyncValueCopyWith<num, $Res>(_value.idealLimit, (value) {
+      return _then(_value.copyWith(idealLimit: value) as $Val);
+    });
+  }
+
+  /// Create a copy of SettingsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AsyncValueCopyWith<num, $Res> get hotLimit {
+    return $AsyncValueCopyWith<num, $Res>(_value.hotLimit, (value) {
+      return _then(_value.copyWith(hotLimit: value) as $Val);
+    });
+  }
+
+  /// Create a copy of SettingsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AsyncValueCopyWith<String, $Res> get telegramUsername {
+    return $AsyncValueCopyWith<String, $Res>(_value.telegramUsername, (value) {
+      return _then(_value.copyWith(telegramUsername: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -120,7 +246,14 @@ abstract class _$$SettingsStateImplCopyWith<$Res>
   $Res call(
       {AsyncValue<bool> machineMaintenance,
       AsyncValue<bool> electricityLimit,
-      AsyncValue<bool> hotTemperature});
+      AsyncValue<bool> hotTemperature,
+      AsyncValue<num> machineInterval,
+      AsyncValue<num> electricityPrice,
+      AsyncValue<num> maxKwh,
+      AsyncValue<num> coolLimit,
+      AsyncValue<num> idealLimit,
+      AsyncValue<num> hotLimit,
+      AsyncValue<String> telegramUsername});
 
   @override
   $AsyncValueCopyWith<bool, $Res> get machineMaintenance;
@@ -128,6 +261,20 @@ abstract class _$$SettingsStateImplCopyWith<$Res>
   $AsyncValueCopyWith<bool, $Res> get electricityLimit;
   @override
   $AsyncValueCopyWith<bool, $Res> get hotTemperature;
+  @override
+  $AsyncValueCopyWith<num, $Res> get machineInterval;
+  @override
+  $AsyncValueCopyWith<num, $Res> get electricityPrice;
+  @override
+  $AsyncValueCopyWith<num, $Res> get maxKwh;
+  @override
+  $AsyncValueCopyWith<num, $Res> get coolLimit;
+  @override
+  $AsyncValueCopyWith<num, $Res> get idealLimit;
+  @override
+  $AsyncValueCopyWith<num, $Res> get hotLimit;
+  @override
+  $AsyncValueCopyWith<String, $Res> get telegramUsername;
 }
 
 /// @nodoc
@@ -146,6 +293,13 @@ class __$$SettingsStateImplCopyWithImpl<$Res>
     Object? machineMaintenance = null,
     Object? electricityLimit = null,
     Object? hotTemperature = null,
+    Object? machineInterval = null,
+    Object? electricityPrice = null,
+    Object? maxKwh = null,
+    Object? coolLimit = null,
+    Object? idealLimit = null,
+    Object? hotLimit = null,
+    Object? telegramUsername = null,
   }) {
     return _then(_$SettingsStateImpl(
       machineMaintenance: null == machineMaintenance
@@ -160,6 +314,34 @@ class __$$SettingsStateImplCopyWithImpl<$Res>
           ? _value.hotTemperature
           : hotTemperature // ignore: cast_nullable_to_non_nullable
               as AsyncValue<bool>,
+      machineInterval: null == machineInterval
+          ? _value.machineInterval
+          : machineInterval // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<num>,
+      electricityPrice: null == electricityPrice
+          ? _value.electricityPrice
+          : electricityPrice // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<num>,
+      maxKwh: null == maxKwh
+          ? _value.maxKwh
+          : maxKwh // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<num>,
+      coolLimit: null == coolLimit
+          ? _value.coolLimit
+          : coolLimit // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<num>,
+      idealLimit: null == idealLimit
+          ? _value.idealLimit
+          : idealLimit // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<num>,
+      hotLimit: null == hotLimit
+          ? _value.hotLimit
+          : hotLimit // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<num>,
+      telegramUsername: null == telegramUsername
+          ? _value.telegramUsername
+          : telegramUsername // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<String>,
     ));
   }
 }
@@ -170,7 +352,14 @@ class _$SettingsStateImpl implements _SettingsState {
   const _$SettingsStateImpl(
       {required this.machineMaintenance,
       required this.electricityLimit,
-      required this.hotTemperature});
+      required this.hotTemperature,
+      required this.machineInterval,
+      required this.electricityPrice,
+      required this.maxKwh,
+      required this.coolLimit,
+      required this.idealLimit,
+      required this.hotLimit,
+      required this.telegramUsername});
 
   @override
   final AsyncValue<bool> machineMaintenance;
@@ -178,10 +367,24 @@ class _$SettingsStateImpl implements _SettingsState {
   final AsyncValue<bool> electricityLimit;
   @override
   final AsyncValue<bool> hotTemperature;
+  @override
+  final AsyncValue<num> machineInterval;
+  @override
+  final AsyncValue<num> electricityPrice;
+  @override
+  final AsyncValue<num> maxKwh;
+  @override
+  final AsyncValue<num> coolLimit;
+  @override
+  final AsyncValue<num> idealLimit;
+  @override
+  final AsyncValue<num> hotLimit;
+  @override
+  final AsyncValue<String> telegramUsername;
 
   @override
   String toString() {
-    return 'SettingsState(machineMaintenance: $machineMaintenance, electricityLimit: $electricityLimit, hotTemperature: $hotTemperature)';
+    return 'SettingsState(machineMaintenance: $machineMaintenance, electricityLimit: $electricityLimit, hotTemperature: $hotTemperature, machineInterval: $machineInterval, electricityPrice: $electricityPrice, maxKwh: $maxKwh, coolLimit: $coolLimit, idealLimit: $idealLimit, hotLimit: $hotLimit, telegramUsername: $telegramUsername)';
   }
 
   @override
@@ -194,12 +397,35 @@ class _$SettingsStateImpl implements _SettingsState {
             (identical(other.electricityLimit, electricityLimit) ||
                 other.electricityLimit == electricityLimit) &&
             (identical(other.hotTemperature, hotTemperature) ||
-                other.hotTemperature == hotTemperature));
+                other.hotTemperature == hotTemperature) &&
+            (identical(other.machineInterval, machineInterval) ||
+                other.machineInterval == machineInterval) &&
+            (identical(other.electricityPrice, electricityPrice) ||
+                other.electricityPrice == electricityPrice) &&
+            (identical(other.maxKwh, maxKwh) || other.maxKwh == maxKwh) &&
+            (identical(other.coolLimit, coolLimit) ||
+                other.coolLimit == coolLimit) &&
+            (identical(other.idealLimit, idealLimit) ||
+                other.idealLimit == idealLimit) &&
+            (identical(other.hotLimit, hotLimit) ||
+                other.hotLimit == hotLimit) &&
+            (identical(other.telegramUsername, telegramUsername) ||
+                other.telegramUsername == telegramUsername));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, machineMaintenance, electricityLimit, hotTemperature);
+      runtimeType,
+      machineMaintenance,
+      electricityLimit,
+      hotTemperature,
+      machineInterval,
+      electricityPrice,
+      maxKwh,
+      coolLimit,
+      idealLimit,
+      hotLimit,
+      telegramUsername);
 
   /// Create a copy of SettingsState
   /// with the given fields replaced by the non-null parameter values.
@@ -212,9 +438,17 @@ class _$SettingsStateImpl implements _SettingsState {
 
 abstract class _SettingsState implements SettingsState {
   const factory _SettingsState(
-      {required final AsyncValue<bool> machineMaintenance,
-      required final AsyncValue<bool> electricityLimit,
-      required final AsyncValue<bool> hotTemperature}) = _$SettingsStateImpl;
+          {required final AsyncValue<bool> machineMaintenance,
+          required final AsyncValue<bool> electricityLimit,
+          required final AsyncValue<bool> hotTemperature,
+          required final AsyncValue<num> machineInterval,
+          required final AsyncValue<num> electricityPrice,
+          required final AsyncValue<num> maxKwh,
+          required final AsyncValue<num> coolLimit,
+          required final AsyncValue<num> idealLimit,
+          required final AsyncValue<num> hotLimit,
+          required final AsyncValue<String> telegramUsername}) =
+      _$SettingsStateImpl;
 
   @override
   AsyncValue<bool> get machineMaintenance;
@@ -222,6 +456,20 @@ abstract class _SettingsState implements SettingsState {
   AsyncValue<bool> get electricityLimit;
   @override
   AsyncValue<bool> get hotTemperature;
+  @override
+  AsyncValue<num> get machineInterval;
+  @override
+  AsyncValue<num> get electricityPrice;
+  @override
+  AsyncValue<num> get maxKwh;
+  @override
+  AsyncValue<num> get coolLimit;
+  @override
+  AsyncValue<num> get idealLimit;
+  @override
+  AsyncValue<num> get hotLimit;
+  @override
+  AsyncValue<String> get telegramUsername;
 
   /// Create a copy of SettingsState
   /// with the given fields replaced by the non-null parameter values.

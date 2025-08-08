@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BarnState {
   AsyncValue<num> get temperature => throw _privateConstructorUsedError;
   AsyncValue<num> get humidity => throw _privateConstructorUsedError;
+  AsyncValue<DateTime> get lastUpdated => throw _privateConstructorUsedError;
   AsyncValue<num> get coolLimit => throw _privateConstructorUsedError;
   AsyncValue<num> get idealLimit => throw _privateConstructorUsedError;
   AsyncValue<num> get hotLimit => throw _privateConstructorUsedError;
@@ -41,6 +42,7 @@ abstract class $BarnStateCopyWith<$Res> {
   $Res call(
       {AsyncValue<num> temperature,
       AsyncValue<num> humidity,
+      AsyncValue<DateTime> lastUpdated,
       AsyncValue<num> coolLimit,
       AsyncValue<num> idealLimit,
       AsyncValue<num> hotLimit,
@@ -49,6 +51,7 @@ abstract class $BarnStateCopyWith<$Res> {
 
   $AsyncValueCopyWith<num, $Res> get temperature;
   $AsyncValueCopyWith<num, $Res> get humidity;
+  $AsyncValueCopyWith<DateTime, $Res> get lastUpdated;
   $AsyncValueCopyWith<num, $Res> get coolLimit;
   $AsyncValueCopyWith<num, $Res> get idealLimit;
   $AsyncValueCopyWith<num, $Res> get hotLimit;
@@ -73,6 +76,7 @@ class _$BarnStateCopyWithImpl<$Res, $Val extends BarnState>
   $Res call({
     Object? temperature = null,
     Object? humidity = null,
+    Object? lastUpdated = null,
     Object? coolLimit = null,
     Object? idealLimit = null,
     Object? hotLimit = null,
@@ -88,6 +92,10 @@ class _$BarnStateCopyWithImpl<$Res, $Val extends BarnState>
           ? _value.humidity
           : humidity // ignore: cast_nullable_to_non_nullable
               as AsyncValue<num>,
+      lastUpdated: null == lastUpdated
+          ? _value.lastUpdated
+          : lastUpdated // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<DateTime>,
       coolLimit: null == coolLimit
           ? _value.coolLimit
           : coolLimit // ignore: cast_nullable_to_non_nullable
@@ -128,6 +136,16 @@ class _$BarnStateCopyWithImpl<$Res, $Val extends BarnState>
   $AsyncValueCopyWith<num, $Res> get humidity {
     return $AsyncValueCopyWith<num, $Res>(_value.humidity, (value) {
       return _then(_value.copyWith(humidity: value) as $Val);
+    });
+  }
+
+  /// Create a copy of BarnState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AsyncValueCopyWith<DateTime, $Res> get lastUpdated {
+    return $AsyncValueCopyWith<DateTime, $Res>(_value.lastUpdated, (value) {
+      return _then(_value.copyWith(lastUpdated: value) as $Val);
     });
   }
 
@@ -195,6 +213,7 @@ abstract class _$$BarnStateImplCopyWith<$Res>
   $Res call(
       {AsyncValue<num> temperature,
       AsyncValue<num> humidity,
+      AsyncValue<DateTime> lastUpdated,
       AsyncValue<num> coolLimit,
       AsyncValue<num> idealLimit,
       AsyncValue<num> hotLimit,
@@ -205,6 +224,8 @@ abstract class _$$BarnStateImplCopyWith<$Res>
   $AsyncValueCopyWith<num, $Res> get temperature;
   @override
   $AsyncValueCopyWith<num, $Res> get humidity;
+  @override
+  $AsyncValueCopyWith<DateTime, $Res> get lastUpdated;
   @override
   $AsyncValueCopyWith<num, $Res> get coolLimit;
   @override
@@ -232,6 +253,7 @@ class __$$BarnStateImplCopyWithImpl<$Res>
   $Res call({
     Object? temperature = null,
     Object? humidity = null,
+    Object? lastUpdated = null,
     Object? coolLimit = null,
     Object? idealLimit = null,
     Object? hotLimit = null,
@@ -247,6 +269,10 @@ class __$$BarnStateImplCopyWithImpl<$Res>
           ? _value.humidity
           : humidity // ignore: cast_nullable_to_non_nullable
               as AsyncValue<num>,
+      lastUpdated: null == lastUpdated
+          ? _value.lastUpdated
+          : lastUpdated // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<DateTime>,
       coolLimit: null == coolLimit
           ? _value.coolLimit
           : coolLimit // ignore: cast_nullable_to_non_nullable
@@ -277,6 +303,7 @@ class _$BarnStateImpl implements _BarnState {
   const _$BarnStateImpl(
       {required this.temperature,
       required this.humidity,
+      required this.lastUpdated,
       required this.coolLimit,
       required this.idealLimit,
       required this.hotLimit,
@@ -287,6 +314,8 @@ class _$BarnStateImpl implements _BarnState {
   final AsyncValue<num> temperature;
   @override
   final AsyncValue<num> humidity;
+  @override
+  final AsyncValue<DateTime> lastUpdated;
   @override
   final AsyncValue<num> coolLimit;
   @override
@@ -300,7 +329,7 @@ class _$BarnStateImpl implements _BarnState {
 
   @override
   String toString() {
-    return 'BarnState(temperature: $temperature, humidity: $humidity, coolLimit: $coolLimit, idealLimit: $idealLimit, hotLimit: $hotLimit, statistics: $statistics, selectedTime: $selectedTime)';
+    return 'BarnState(temperature: $temperature, humidity: $humidity, lastUpdated: $lastUpdated, coolLimit: $coolLimit, idealLimit: $idealLimit, hotLimit: $hotLimit, statistics: $statistics, selectedTime: $selectedTime)';
   }
 
   @override
@@ -312,6 +341,8 @@ class _$BarnStateImpl implements _BarnState {
                 other.temperature == temperature) &&
             (identical(other.humidity, humidity) ||
                 other.humidity == humidity) &&
+            (identical(other.lastUpdated, lastUpdated) ||
+                other.lastUpdated == lastUpdated) &&
             (identical(other.coolLimit, coolLimit) ||
                 other.coolLimit == coolLimit) &&
             (identical(other.idealLimit, idealLimit) ||
@@ -325,8 +356,8 @@ class _$BarnStateImpl implements _BarnState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, temperature, humidity, coolLimit,
-      idealLimit, hotLimit, statistics, selectedTime);
+  int get hashCode => Object.hash(runtimeType, temperature, humidity,
+      lastUpdated, coolLimit, idealLimit, hotLimit, statistics, selectedTime);
 
   /// Create a copy of BarnState
   /// with the given fields replaced by the non-null parameter values.
@@ -341,6 +372,7 @@ abstract class _BarnState implements BarnState {
   const factory _BarnState(
           {required final AsyncValue<num> temperature,
           required final AsyncValue<num> humidity,
+          required final AsyncValue<DateTime> lastUpdated,
           required final AsyncValue<num> coolLimit,
           required final AsyncValue<num> idealLimit,
           required final AsyncValue<num> hotLimit,
@@ -352,6 +384,8 @@ abstract class _BarnState implements BarnState {
   AsyncValue<num> get temperature;
   @override
   AsyncValue<num> get humidity;
+  @override
+  AsyncValue<DateTime> get lastUpdated;
   @override
   AsyncValue<num> get coolLimit;
   @override

@@ -16,6 +16,7 @@ class BarnCubit extends Cubit<BarnState> {
       : super(
           const BarnState(
             temperature: AsyncValue.loading(),
+            lastUpdated: AsyncValue.loading(),
             humidity: AsyncValue.loading(),
             statistics: AsyncValue.loading(),
             selectedTime: AsyncValue.data(DropdownTimeEnum.today),
@@ -127,10 +128,12 @@ class BarnCubit extends Cubit<BarnState> {
       final data = value.docs.first.data();
       final temperature = data['temperature'] as num;
       final humidity = data['humidity'] as num;
+      final date = DateTime.fromMillisecondsSinceEpoch(data['datetime'] as int);
       emit(
         state.copyWith(
           temperature: AsyncValue.data(temperature),
           humidity: AsyncValue.data(humidity),
+          lastUpdated: AsyncValue.data(date),
         ),
       );
     }

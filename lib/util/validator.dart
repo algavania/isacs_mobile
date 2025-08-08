@@ -11,4 +11,15 @@ class Validator {
     if (text.trim().isEmpty) return context.l10n.emptyValidatorMessage;
     return null;
   }
+
+  String? telegramValidator(String? text) {
+    if (text == null || text.trim().isEmpty) {
+      return context.l10n.emptyValidatorMessage;
+    }
+    // Check if the text starts with '@' and not contains spaces
+    if (!text.startsWith('@') || text.contains(' ')) {
+      return context.l10n.telegramUsernameValidation;
+    }
+    return null;
+  }
 }

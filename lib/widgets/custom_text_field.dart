@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
 import 'package:isacs_mobile/core/color_values.dart';
@@ -16,6 +17,7 @@ class CustomTextField extends StatefulWidget {
     this.expands = false,
     this.autofocus = false,
     this.label,
+    this.description,
     this.hint,
     this.icon,
     this.textInputType,
@@ -26,6 +28,7 @@ class CustomTextField extends StatefulWidget {
     this.fillColor,
     this.suffixIcon,
     this.readOnly = false,
+    this.inputFormatters,
   });
 
   final TextEditingController controller;
@@ -35,6 +38,7 @@ class CustomTextField extends StatefulWidget {
   final bool isPassword;
   final bool isDense;
   final String? label;
+  final String? description;
   final String? hint;
   final IconData? icon;
   final IconData? suffixIcon;
@@ -47,6 +51,7 @@ class CustomTextField extends StatefulWidget {
   final FocusNode? focusNode;
   final Color? fillColor;
   final bool readOnly;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -58,7 +63,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   InputBorder _getBorder({Color color = ColorValues.grey10}) {
     return widget.isRounded
         ? OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Styles.largeBorder),
+            borderRadius: BorderRadius.circular(Styles.defaultBorder),
             borderSide: BorderSide(color: color),
           )
         : const UnderlineInputBorder(
@@ -85,6 +90,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
               ],
             ),
           ),
+        if (widget.description != null) const SizedBox(height: 4),
+        if (widget.description != null)
+          Text(
+            widget.description!,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: ColorValues.grey50,
+                ),
+          ),
         if (widget.label != null) const SizedBox(height: 8),
         if (widget.readOnly) AbsorbPointer(child: _buildTextField(context),)
         else _buildTextField(context),
@@ -103,6 +116,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         onChanged: widget.onChanged,
         controller: widget.controller,
         validator: widget.validator,
+        inputFormatters: widget.inputFormatters,
         style: Theme.of(context).textTheme.displaySmall,
         obscureText: widget.isPassword ? _isShowPassword : false,
         keyboardType: widget.textInputType ?? TextInputType.text,

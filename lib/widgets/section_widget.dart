@@ -9,10 +9,12 @@ class SectionWidget extends StatelessWidget {
     required this.child,
     super.key,
     this.subtitle,
+    this.description,
     this.onSubtitleTap,
   });
 
   final String title;
+  final String? description;
   final Widget child;
   final String? subtitle;
   final void Function()? onSubtitleTap;
@@ -44,6 +46,7 @@ class SectionWidget extends StatelessWidget {
               ),
           ],
         ),
+        if (description != null) Text(description!),
         child,
       ],
     );

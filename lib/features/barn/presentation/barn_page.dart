@@ -192,8 +192,15 @@ class _BarnPageState extends State<BarnPage> {
           previous.coolLimit != current.coolLimit ||
           previous.idealLimit != current.idealLimit,
       builder: (context, state) {
+        final date = state.lastUpdated.maybeMap(
+          orElse: () => null,
+          data: (s) => s.data,
+        );
         return SectionWidget(
           title: context.l10n.barnMonitoring,
+          description:
+              '${context.l10n.lastUpdatedAt} ${date != null ?
+              DateFormat('d MMMM HH:mm').format(date) : '-'}',
           child: Column(
             spacing: Styles.largeSpacing,
             children: [
