@@ -9,17 +9,23 @@ part of 'machine_activity_model.dart';
 _$MachineActivityModelImpl _$$MachineActivityModelImplFromJson(
         Map<String, dynamic> json) =>
     _$MachineActivityModelImpl(
-      dateTime: DateTime.parse(json['date_time'] as String),
-      status: json['status'] as String,
-      totalUsage: json['total_usage'] as num?,
-      electricityUsage: json['electricity_usage'] as num?,
+      startTime: const MillisecondsSinceEpochConverter()
+          .fromJson((json['start_time'] as num).toInt()),
+      endTime: const MillisecondsSinceEpochConverter()
+          .fromJson((json['end_time'] as num).toInt()),
+      averageCurrent: json['average_current'] as num,
+      kwh: json['kwh'] as num,
+      secondsDuration: json['seconds_duration'] as num,
     );
 
 Map<String, dynamic> _$$MachineActivityModelImplToJson(
         _$MachineActivityModelImpl instance) =>
     <String, dynamic>{
-      'date_time': instance.dateTime.toIso8601String(),
-      'status': instance.status,
-      'total_usage': instance.totalUsage,
-      'electricity_usage': instance.electricityUsage,
+      'start_time':
+          const MillisecondsSinceEpochConverter().toJson(instance.startTime),
+      'end_time':
+          const MillisecondsSinceEpochConverter().toJson(instance.endTime),
+      'average_current': instance.averageCurrent,
+      'kwh': instance.kwh,
+      'seconds_duration': instance.secondsDuration,
     };

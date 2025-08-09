@@ -25,6 +25,7 @@ mixin _$SettingsState {
   AsyncValue<num> get coolLimit => throw _privateConstructorUsedError;
   AsyncValue<num> get idealLimit => throw _privateConstructorUsedError;
   AsyncValue<num> get hotLimit => throw _privateConstructorUsedError;
+  AsyncValue<num> get lastTotalUsage => throw _privateConstructorUsedError;
   AsyncValue<String> get telegramUsername => throw _privateConstructorUsedError;
 
   /// Create a copy of SettingsState
@@ -50,6 +51,7 @@ abstract class $SettingsStateCopyWith<$Res> {
       AsyncValue<num> coolLimit,
       AsyncValue<num> idealLimit,
       AsyncValue<num> hotLimit,
+      AsyncValue<num> lastTotalUsage,
       AsyncValue<String> telegramUsername});
 
   $AsyncValueCopyWith<bool, $Res> get machineMaintenance;
@@ -61,6 +63,7 @@ abstract class $SettingsStateCopyWith<$Res> {
   $AsyncValueCopyWith<num, $Res> get coolLimit;
   $AsyncValueCopyWith<num, $Res> get idealLimit;
   $AsyncValueCopyWith<num, $Res> get hotLimit;
+  $AsyncValueCopyWith<num, $Res> get lastTotalUsage;
   $AsyncValueCopyWith<String, $Res> get telegramUsername;
 }
 
@@ -88,6 +91,7 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
     Object? coolLimit = null,
     Object? idealLimit = null,
     Object? hotLimit = null,
+    Object? lastTotalUsage = null,
     Object? telegramUsername = null,
   }) {
     return _then(_value.copyWith(
@@ -126,6 +130,10 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
       hotLimit: null == hotLimit
           ? _value.hotLimit
           : hotLimit // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<num>,
+      lastTotalUsage: null == lastTotalUsage
+          ? _value.lastTotalUsage
+          : lastTotalUsage // ignore: cast_nullable_to_non_nullable
               as AsyncValue<num>,
       telegramUsername: null == telegramUsername
           ? _value.telegramUsername
@@ -228,6 +236,16 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
+  $AsyncValueCopyWith<num, $Res> get lastTotalUsage {
+    return $AsyncValueCopyWith<num, $Res>(_value.lastTotalUsage, (value) {
+      return _then(_value.copyWith(lastTotalUsage: value) as $Val);
+    });
+  }
+
+  /// Create a copy of SettingsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
   $AsyncValueCopyWith<String, $Res> get telegramUsername {
     return $AsyncValueCopyWith<String, $Res>(_value.telegramUsername, (value) {
       return _then(_value.copyWith(telegramUsername: value) as $Val);
@@ -253,6 +271,7 @@ abstract class _$$SettingsStateImplCopyWith<$Res>
       AsyncValue<num> coolLimit,
       AsyncValue<num> idealLimit,
       AsyncValue<num> hotLimit,
+      AsyncValue<num> lastTotalUsage,
       AsyncValue<String> telegramUsername});
 
   @override
@@ -273,6 +292,8 @@ abstract class _$$SettingsStateImplCopyWith<$Res>
   $AsyncValueCopyWith<num, $Res> get idealLimit;
   @override
   $AsyncValueCopyWith<num, $Res> get hotLimit;
+  @override
+  $AsyncValueCopyWith<num, $Res> get lastTotalUsage;
   @override
   $AsyncValueCopyWith<String, $Res> get telegramUsername;
 }
@@ -299,6 +320,7 @@ class __$$SettingsStateImplCopyWithImpl<$Res>
     Object? coolLimit = null,
     Object? idealLimit = null,
     Object? hotLimit = null,
+    Object? lastTotalUsage = null,
     Object? telegramUsername = null,
   }) {
     return _then(_$SettingsStateImpl(
@@ -338,6 +360,10 @@ class __$$SettingsStateImplCopyWithImpl<$Res>
           ? _value.hotLimit
           : hotLimit // ignore: cast_nullable_to_non_nullable
               as AsyncValue<num>,
+      lastTotalUsage: null == lastTotalUsage
+          ? _value.lastTotalUsage
+          : lastTotalUsage // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<num>,
       telegramUsername: null == telegramUsername
           ? _value.telegramUsername
           : telegramUsername // ignore: cast_nullable_to_non_nullable
@@ -359,6 +385,7 @@ class _$SettingsStateImpl implements _SettingsState {
       required this.coolLimit,
       required this.idealLimit,
       required this.hotLimit,
+      required this.lastTotalUsage,
       required this.telegramUsername});
 
   @override
@@ -380,11 +407,13 @@ class _$SettingsStateImpl implements _SettingsState {
   @override
   final AsyncValue<num> hotLimit;
   @override
+  final AsyncValue<num> lastTotalUsage;
+  @override
   final AsyncValue<String> telegramUsername;
 
   @override
   String toString() {
-    return 'SettingsState(machineMaintenance: $machineMaintenance, electricityLimit: $electricityLimit, hotTemperature: $hotTemperature, machineInterval: $machineInterval, electricityPrice: $electricityPrice, maxKwh: $maxKwh, coolLimit: $coolLimit, idealLimit: $idealLimit, hotLimit: $hotLimit, telegramUsername: $telegramUsername)';
+    return 'SettingsState(machineMaintenance: $machineMaintenance, electricityLimit: $electricityLimit, hotTemperature: $hotTemperature, machineInterval: $machineInterval, electricityPrice: $electricityPrice, maxKwh: $maxKwh, coolLimit: $coolLimit, idealLimit: $idealLimit, hotLimit: $hotLimit, lastTotalUsage: $lastTotalUsage, telegramUsername: $telegramUsername)';
   }
 
   @override
@@ -409,6 +438,8 @@ class _$SettingsStateImpl implements _SettingsState {
                 other.idealLimit == idealLimit) &&
             (identical(other.hotLimit, hotLimit) ||
                 other.hotLimit == hotLimit) &&
+            (identical(other.lastTotalUsage, lastTotalUsage) ||
+                other.lastTotalUsage == lastTotalUsage) &&
             (identical(other.telegramUsername, telegramUsername) ||
                 other.telegramUsername == telegramUsername));
   }
@@ -425,6 +456,7 @@ class _$SettingsStateImpl implements _SettingsState {
       coolLimit,
       idealLimit,
       hotLimit,
+      lastTotalUsage,
       telegramUsername);
 
   /// Create a copy of SettingsState
@@ -447,6 +479,7 @@ abstract class _SettingsState implements SettingsState {
           required final AsyncValue<num> coolLimit,
           required final AsyncValue<num> idealLimit,
           required final AsyncValue<num> hotLimit,
+          required final AsyncValue<num> lastTotalUsage,
           required final AsyncValue<String> telegramUsername}) =
       _$SettingsStateImpl;
 
@@ -468,6 +501,8 @@ abstract class _SettingsState implements SettingsState {
   AsyncValue<num> get idealLimit;
   @override
   AsyncValue<num> get hotLimit;
+  @override
+  AsyncValue<num> get lastTotalUsage;
   @override
   AsyncValue<String> get telegramUsername;
 

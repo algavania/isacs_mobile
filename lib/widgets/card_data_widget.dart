@@ -8,48 +8,21 @@ import 'package:isacs_mobile/features/chopper/data/machine_activity_model.dart';
 import 'package:isacs_mobile/l10n/l10n.dart';
 import 'package:isacs_mobile/util/extensions.dart';
 
-class CardDataWidget extends StatefulWidget {
+class CardDataWidget extends StatelessWidget {
   const CardDataWidget({required this.data, super.key});
 
   final MachineActivityModel data;
 
   @override
-  State<CardDataWidget> createState() => _CardDataWidgetState();
-}
-
-class _CardDataWidgetState extends State<CardDataWidget> {
-  @override
   Widget build(BuildContext context) {
-    return _buildCardData();
+    return _buildCard(context);
   }
 
-  String _getStatusText(String status) {
-    switch (status.toLowerCase()) {
-      case 'on':
-        return context.l10n.on;
-      case 'off':
-        return context.l10n.off;
-      case 'overload':
-        return context.l10n.overload;
-    }
-    return '-';
-  }
+  Widget _buildCard(BuildContext context) {
+    final startDate = DateFormat('dd MMM yyyy HH:mm').format(data.startTime);
+    final endDate = DateFormat('dd MMM yyyy HH:mm').format(data.endTime);
+    final durationText = _formatDuration(data.secondsDuration);
 
-  Color _getStatusColor(String status) {
-    switch (status.toLowerCase()) {
-      case 'on':
-        return ColorValues.primary50;
-      case 'off':
-        return ColorValues.danger50;
-      case 'overload':
-        return Colors.orange; // Orange for overload
-    }
-    return Colors.grey; // Default color
-  }
-
-  Widget _buildCardData() {
-    final date =
-        DateFormat('E, dd MMMM yyyy HH:mm').format(widget.data.dateTime);
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -58,36 +31,19 @@ class _CardDataWidgetState extends State<CardDataWidget> {
         border: Border.all(color: ColorValues.grey10),
       ),
       child: ExpandablePanel(
-        header: Row(
+        header: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                FittedBox(
-                  child: RichText(
-                    text: TextSpan(
-                      text: '${context.l10n.machine} ',
-                      style: context.textTheme.bodyMedium?.copyWith(
-                        fontSize: 18,
-                      ),
-                      children: [
-                        TextSpan(
-                          text: _getStatusText(widget.data.status),
-                          style: context.textTheme.titleMedium?.copyWith(
-                            color: _getStatusColor(widget.data.status),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Text(
-                  date,
-                  style: context.textTheme.bodySmall?.copyWith(
-                    color: ColorValues.grey40,
-                  ),
-                ),
-              ],
+            Text(
+              'Mesin',
+              style: context.textTheme.titleMedium?.copyWith(fontSize: 18),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              '$startDate - $endDate',
+              style: context.textTheme.bodySmall?.copyWith(
+                color: ColorValues.grey40,
+              ),
             ),
           ],
         ),
@@ -100,16 +56,18 @@ class _CardDataWidgetState extends State<CardDataWidget> {
               children: [
                 Flexible(
                   child: _buildTextData(
-                    context.l10n.totalUsage,
-                    '${widget.data.totalUsage ?? '-'}',
-                    context.l10n.hours,
+                    context,
+                    'Durasi',
+                    durationText,
+                    '',
                   ),
                 ),
                 Flexible(
                   child: _buildTextData(
+                    context,
                     context.l10n.electricityConsumption,
-                    '${widget.data.electricityUsage ?? '-'}',
-                    context.l10n.kwh,
+                    '${data.kwh}',
+                    'kWh',
                   ),
                 ),
               ],
@@ -120,7 +78,25 @@ class _CardDataWidgetState extends State<CardDataWidget> {
     );
   }
 
-  Widget _buildTextData(String title, String content, String suffix) {
+  String _formatDuration(num seconds) {
+    final totalSeconds = seconds.toInt();
+    if (totalSeconds < 60) {
+      return '$totalSeconds detik';
+    }
+    final hours = totalSeconds ~/ 3600;
+    final minutes = (totalSeconds % 3600) ~/ 60;
+    if (hours > 0) {
+      return '$hours jam $minutes menit';
+    }
+    return '$minutes menit';
+  }
+
+  Widget _buildTextData(
+      BuildContext context,
+      String title,
+      String content,
+      String suffix,
+      ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -140,14 +116,15 @@ class _CardDataWidgetState extends State<CardDataWidget> {
                     color: ColorValues.primary50,
                   ),
                 ),
-                TextSpan(
-                  text: ' $suffix',
-                  style: const TextStyle(
-                    color: Color(0xFF6F6F6F),
-                    fontSize: 10,
-                    fontWeight: FontWeight.w500,
+                if (suffix.isNotEmpty)
+                  TextSpan(
+                    text: ' $suffix',
+                    style: const TextStyle(
+                      color: ColorValues.grey30,
+                      fontSize: 10,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
               ],
             ),
           ),

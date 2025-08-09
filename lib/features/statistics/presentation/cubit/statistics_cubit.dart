@@ -17,7 +17,7 @@ class StatisticsCubit extends Cubit<StatisticsState> {
   StatisticsCubit()
       : super(
     const StatisticsState(
-      isChopperSelected: AsyncValue.data(true),
+      isChopperSelected: AsyncValue.data(false),
       machineAnalysis: AsyncValue.data(null),
       barnAnalysis: AsyncValue.data(null),
       machineTimeDropdown: AsyncValue.data(DropdownTimeEnum.today),

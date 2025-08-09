@@ -1,8 +1,11 @@
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:isacs_mobile/core/async_value.dart';
 import 'package:isacs_mobile/core/database.dart';
+import 'package:isacs_mobile/features/chopper/presentation/cubit/chopper_cubit.dart';
+import 'package:isacs_mobile/injector/injector.dart';
 
 part 'settings_state.dart';
 
@@ -21,6 +24,7 @@ class SettingsCubit extends Cubit<SettingsState> {
             coolLimit: AsyncValue.initial(),
             idealLimit: AsyncValue.initial(),
             hotLimit: AsyncValue.initial(),
+            lastTotalUsage: AsyncValue.initial(),
             telegramUsername: AsyncValue.data(''),
           ),
         ) {
@@ -29,73 +33,91 @@ class SettingsCubit extends Cubit<SettingsState> {
     getTemperatureLimits();
   }
 
+  var hasFetchedFirst = false;
+
   Future<void> getTemperatureLimits() async {
-    final res =
-        await Database.firestore.collection('settings').doc('barn').get();
+    final res = await Database.realtimeDb.ref('barn').get();
     _setTemperatureLimits(res);
-    Database.firestore
-        .collection('settings')
-        .doc('barn')
-        .snapshots()
-        .listen(_setTemperatureLimits);
+    Database.realtimeDb.ref('barn').onValue.listen((event) {
+      _setTemperatureLimits(event.snapshot);
+    });
   }
 
-  void _setTemperatureLimits(DocumentSnapshot<Map<String, dynamic>> res) {
-    final data = res.data();
-    final coolLimit = data?['cool'] as num;
-    final idealLimit = data?['ideal'] as num;
-    final hotLimit = data?['hot'] as num;
-    emit(
-      state.copyWith(
-        coolLimit: AsyncValue.data(coolLimit),
-        idealLimit: AsyncValue.data(idealLimit),
-        hotLimit: AsyncValue.data(hotLimit),
-      ),
-    );
+  void _setTemperatureLimits(DataSnapshot res) {
+    if (res.exists) {
+      final data = res.value! as Map;
+      final coolLimit = data['cool'] as num;
+      final idealLimit = data['ideal'] as num;
+      final hotLimit = data['hot'] as num;
+      emit(
+        state.copyWith(
+          coolLimit: AsyncValue.data(coolLimit),
+          idealLimit: AsyncValue.data(idealLimit),
+          hotLimit: AsyncValue.data(hotLimit),
+        ),
+      );
+    }
   }
 
   Future<void> getSettingInfo() async {
-    final res =
-        await Database.firestore.collection('settings').doc('setting').get();
+    final res = await Database.realtimeDb.ref('setting').get();
     _setSetting(res);
-    Database.firestore
-        .collection('settings')
-        .doc('setting')
-        .snapshots()
-        .listen(_setSetting);
+    Database.realtimeDb.ref('setting').onValue.listen((event) {
+      _setSetting(event.snapshot);
+    });
+  }
+
+  void _setSetting(DataSnapshot res) {
+    if (res.exists) {
+      final data = res.value! as Map;
+      final electricityPrice = data['electricity_price'] as num;
+      final machineInterval = data['machine_interval'] as num;
+      final maxKwh = data['max_kwh'] as num;
+      final lastTotalUsage = data['last_total_usage'] as num? ?? 0;
+      if (!hasFetchedFirst) {
+        hasFetchedFirst = true;
+        debugPrint('get total usage with $lastTotalUsage');
+        Injector.instance<ChopperCubit>().setTotalUsage(lastTotalUsage);
+      }
+      emit(
+        state.copyWith(
+          electricityPrice: AsyncValue.data(electricityPrice),
+          machineInterval: AsyncValue.data(machineInterval),
+          maxKwh: AsyncValue.data(maxKwh),
+          lastTotalUsage: AsyncValue.data(lastTotalUsage),
+        ),
+      );
+    }
   }
 
   Future<void> getNotificationsInfo() async {
-    final res = await Database.firestore
-        .collection('settings')
-        .doc('notification')
-        .get();
-    _setNotifications(res);
-    Database.firestore
-        .collection('settings')
-        .doc('notification')
-        .snapshots()
-        .listen(_setNotifications);
+    final res = await Database.realtimeDb.ref('notification').get();
+    _setNotification(res);
+    Database.realtimeDb.ref('notification').onValue.listen((event) {
+      _setNotification(event.snapshot);
+    });
   }
 
-  void _setNotifications(DocumentSnapshot<Map<String, dynamic>> res) {
-    final data = res.data();
-    final electricityLimit = data?['electricity_limit'] as bool;
-    final hotTemperature = data?['hot_temperature'] as bool;
-    final machineMaintenance = data?['machine_maintenance'] as bool;
-    final telegramUsername = data?['telegram_username'] as String;
-    emit(
-      state.copyWith(
-        electricityLimit: AsyncValue.data(electricityLimit),
-        hotTemperature: AsyncValue.data(hotTemperature),
-        machineMaintenance: AsyncValue.data(machineMaintenance),
-        telegramUsername: AsyncValue.data(telegramUsername),
-      ),
-    );
+  void _setNotification(DataSnapshot res) {
+    if (res.exists) {
+      final data = res.value! as Map;
+      final electricityLimit = data['electricity_limit'] as bool? ?? false;
+      final hotTemperature = data['hot_temperature'] as bool? ?? false;
+      final machineMaintenance = data['machine_maintenance'] as bool? ?? false;
+      final telegramUsername = data['telegram_username'] as String? ?? '';
+      emit(
+        state.copyWith(
+          electricityLimit: AsyncValue.data(electricityLimit),
+          hotTemperature: AsyncValue.data(hotTemperature),
+          machineMaintenance: AsyncValue.data(machineMaintenance),
+          telegramUsername: AsyncValue.data(telegramUsername),
+        ),
+      );
+    }
   }
 
   void setTelegramUsername(String username) {
-    Database.firestore.collection('settings').doc('notification').update({
+    Database.realtimeDb.ref('notification').update({
       'telegram_username': username,
     });
   }
@@ -105,7 +127,7 @@ class SettingsCubit extends Cubit<SettingsState> {
     required num idealLimit,
     required num hotLimit,
   }) {
-    Database.firestore.collection('settings').doc('barn').update({
+    Database.realtimeDb.ref('barn').update({
       'cool': coolLimit,
       'ideal': idealLimit,
       'hot': hotLimit,
@@ -113,51 +135,37 @@ class SettingsCubit extends Cubit<SettingsState> {
   }
 
   void setElectricityPrice(num price) {
-    Database.firestore.collection('settings').doc('setting').update({
+    Database.realtimeDb.ref('setting').update({
       'electricity_price': price,
     });
   }
 
   void setMachineInterval(num interval) {
-    Database.firestore.collection('settings').doc('setting').update({
+    Database.realtimeDb.ref('setting').update({
       'machine_interval': interval,
     });
   }
 
   void setMaxKwh(num maxKwh) {
-    Database.firestore.collection('settings').doc('setting').update({
+    Database.realtimeDb.ref('setting').update({
       'max_kwh': maxKwh,
     });
   }
 
-  void _setSetting(DocumentSnapshot<Map<String, dynamic>> res) {
-    final data = res.data();
-    final electricityPrice = data?['electricity_price'] as num;
-    final machineInterval = data?['machine_interval'] as num;
-    final maxKwh = data?['max_kwh'] as num;
-    emit(
-      state.copyWith(
-        electricityPrice: AsyncValue.data(electricityPrice),
-        machineInterval: AsyncValue.data(machineInterval),
-        maxKwh: AsyncValue.data(maxKwh),
-      ),
-    );
-  }
-
   void setMachineMaintenance({required bool value}) {
-    Database.firestore.collection('settings').doc('notification').update({
+    Database.realtimeDb.ref('notification').update({
       'machine_maintenance': value,
     });
   }
 
   void setElectricityLimit({required bool value}) {
-    Database.firestore.collection('settings').doc('notification').update({
+    Database.realtimeDb.ref('notification').update({
       'electricity_limit': value,
     });
   }
 
   void setHotTemperature({required bool value}) {
-    Database.firestore.collection('settings').doc('notification').update({
+    Database.realtimeDb.ref('notification').update({
       'hot_temperature': value,
     });
   }

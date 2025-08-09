@@ -58,7 +58,8 @@ class BarnCubit extends Cubit<BarnState> {
       return;
     }
     final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
+    final today = DateTime(now.year, now.month, now.day, 0, 0, 0, 0, 0);
+    debugPrint('Selected time: $selectedTime, Today: ${today.millisecondsSinceEpoch}');
     final statisticRef = Database.firestore.collection('sensors');
     late Query<Map<String, dynamic>> queryRef;
     switch (selectedTime) {
@@ -94,6 +95,7 @@ class BarnCubit extends Cubit<BarnState> {
   }
 
   void _setStatistics(QuerySnapshot<Map<String, dynamic>> value) {
+    debugPrint('Sensor data count: ${value.docs.length}');
     final activities = value.docs.map((doc) {
       final data = doc.data();
       return BarnActivityModel.fromJson(data);

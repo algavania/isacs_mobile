@@ -121,6 +121,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         obscureText: widget.isPassword ? _isShowPassword : false,
         keyboardType: widget.textInputType ?? TextInputType.text,
         decoration: InputDecoration(
+          errorMaxLines: 10,
           hintText: widget.hint,
           hintStyle: Theme.of(context)
               .textTheme

@@ -20,10 +20,13 @@ MachineActivityModel _$MachineActivityModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MachineActivityModel {
-  DateTime get dateTime => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
-  num? get totalUsage => throw _privateConstructorUsedError;
-  num? get electricityUsage => throw _privateConstructorUsedError;
+  @MillisecondsSinceEpochConverter()
+  DateTime get startTime => throw _privateConstructorUsedError;
+  @MillisecondsSinceEpochConverter()
+  DateTime get endTime => throw _privateConstructorUsedError;
+  num get averageCurrent => throw _privateConstructorUsedError;
+  num get kwh => throw _privateConstructorUsedError;
+  num get secondsDuration => throw _privateConstructorUsedError;
 
   /// Serializes this MachineActivityModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,10 +45,11 @@ abstract class $MachineActivityModelCopyWith<$Res> {
       _$MachineActivityModelCopyWithImpl<$Res, MachineActivityModel>;
   @useResult
   $Res call(
-      {DateTime dateTime,
-      String status,
-      num? totalUsage,
-      num? electricityUsage});
+      {@MillisecondsSinceEpochConverter() DateTime startTime,
+      @MillisecondsSinceEpochConverter() DateTime endTime,
+      num averageCurrent,
+      num kwh,
+      num secondsDuration});
 }
 
 /// @nodoc
@@ -64,28 +68,33 @@ class _$MachineActivityModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dateTime = null,
-    Object? status = null,
-    Object? totalUsage = freezed,
-    Object? electricityUsage = freezed,
+    Object? startTime = null,
+    Object? endTime = null,
+    Object? averageCurrent = null,
+    Object? kwh = null,
+    Object? secondsDuration = null,
   }) {
     return _then(_value.copyWith(
-      dateTime: null == dateTime
-          ? _value.dateTime
-          : dateTime // ignore: cast_nullable_to_non_nullable
+      startTime: null == startTime
+          ? _value.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalUsage: freezed == totalUsage
-          ? _value.totalUsage
-          : totalUsage // ignore: cast_nullable_to_non_nullable
-              as num?,
-      electricityUsage: freezed == electricityUsage
-          ? _value.electricityUsage
-          : electricityUsage // ignore: cast_nullable_to_non_nullable
-              as num?,
+      endTime: null == endTime
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      averageCurrent: null == averageCurrent
+          ? _value.averageCurrent
+          : averageCurrent // ignore: cast_nullable_to_non_nullable
+              as num,
+      kwh: null == kwh
+          ? _value.kwh
+          : kwh // ignore: cast_nullable_to_non_nullable
+              as num,
+      secondsDuration: null == secondsDuration
+          ? _value.secondsDuration
+          : secondsDuration // ignore: cast_nullable_to_non_nullable
+              as num,
     ) as $Val);
   }
 }
@@ -99,10 +108,11 @@ abstract class _$$MachineActivityModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {DateTime dateTime,
-      String status,
-      num? totalUsage,
-      num? electricityUsage});
+      {@MillisecondsSinceEpochConverter() DateTime startTime,
+      @MillisecondsSinceEpochConverter() DateTime endTime,
+      num averageCurrent,
+      num kwh,
+      num secondsDuration});
 }
 
 /// @nodoc
@@ -118,28 +128,33 @@ class __$$MachineActivityModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dateTime = null,
-    Object? status = null,
-    Object? totalUsage = freezed,
-    Object? electricityUsage = freezed,
+    Object? startTime = null,
+    Object? endTime = null,
+    Object? averageCurrent = null,
+    Object? kwh = null,
+    Object? secondsDuration = null,
   }) {
     return _then(_$MachineActivityModelImpl(
-      dateTime: null == dateTime
-          ? _value.dateTime
-          : dateTime // ignore: cast_nullable_to_non_nullable
+      startTime: null == startTime
+          ? _value.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalUsage: freezed == totalUsage
-          ? _value.totalUsage
-          : totalUsage // ignore: cast_nullable_to_non_nullable
-              as num?,
-      electricityUsage: freezed == electricityUsage
-          ? _value.electricityUsage
-          : electricityUsage // ignore: cast_nullable_to_non_nullable
-              as num?,
+      endTime: null == endTime
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      averageCurrent: null == averageCurrent
+          ? _value.averageCurrent
+          : averageCurrent // ignore: cast_nullable_to_non_nullable
+              as num,
+      kwh: null == kwh
+          ? _value.kwh
+          : kwh // ignore: cast_nullable_to_non_nullable
+              as num,
+      secondsDuration: null == secondsDuration
+          ? _value.secondsDuration
+          : secondsDuration // ignore: cast_nullable_to_non_nullable
+              as num,
     ));
   }
 }
@@ -148,26 +163,31 @@ class __$$MachineActivityModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MachineActivityModelImpl implements _MachineActivityModel {
   const _$MachineActivityModelImpl(
-      {required this.dateTime,
-      required this.status,
-      this.totalUsage,
-      this.electricityUsage});
+      {@MillisecondsSinceEpochConverter() required this.startTime,
+      @MillisecondsSinceEpochConverter() required this.endTime,
+      required this.averageCurrent,
+      required this.kwh,
+      required this.secondsDuration});
 
   factory _$MachineActivityModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$MachineActivityModelImplFromJson(json);
 
   @override
-  final DateTime dateTime;
+  @MillisecondsSinceEpochConverter()
+  final DateTime startTime;
   @override
-  final String status;
+  @MillisecondsSinceEpochConverter()
+  final DateTime endTime;
   @override
-  final num? totalUsage;
+  final num averageCurrent;
   @override
-  final num? electricityUsage;
+  final num kwh;
+  @override
+  final num secondsDuration;
 
   @override
   String toString() {
-    return 'MachineActivityModel(dateTime: $dateTime, status: $status, totalUsage: $totalUsage, electricityUsage: $electricityUsage)';
+    return 'MachineActivityModel(startTime: $startTime, endTime: $endTime, averageCurrent: $averageCurrent, kwh: $kwh, secondsDuration: $secondsDuration)';
   }
 
   @override
@@ -175,19 +195,20 @@ class _$MachineActivityModelImpl implements _MachineActivityModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MachineActivityModelImpl &&
-            (identical(other.dateTime, dateTime) ||
-                other.dateTime == dateTime) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.totalUsage, totalUsage) ||
-                other.totalUsage == totalUsage) &&
-            (identical(other.electricityUsage, electricityUsage) ||
-                other.electricityUsage == electricityUsage));
+            (identical(other.startTime, startTime) ||
+                other.startTime == startTime) &&
+            (identical(other.endTime, endTime) || other.endTime == endTime) &&
+            (identical(other.averageCurrent, averageCurrent) ||
+                other.averageCurrent == averageCurrent) &&
+            (identical(other.kwh, kwh) || other.kwh == kwh) &&
+            (identical(other.secondsDuration, secondsDuration) ||
+                other.secondsDuration == secondsDuration));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, dateTime, status, totalUsage, electricityUsage);
+  int get hashCode => Object.hash(
+      runtimeType, startTime, endTime, averageCurrent, kwh, secondsDuration);
 
   /// Create a copy of MachineActivityModel
   /// with the given fields replaced by the non-null parameter values.
@@ -209,22 +230,27 @@ class _$MachineActivityModelImpl implements _MachineActivityModel {
 
 abstract class _MachineActivityModel implements MachineActivityModel {
   const factory _MachineActivityModel(
-      {required final DateTime dateTime,
-      required final String status,
-      final num? totalUsage,
-      final num? electricityUsage}) = _$MachineActivityModelImpl;
+      {@MillisecondsSinceEpochConverter() required final DateTime startTime,
+      @MillisecondsSinceEpochConverter() required final DateTime endTime,
+      required final num averageCurrent,
+      required final num kwh,
+      required final num secondsDuration}) = _$MachineActivityModelImpl;
 
   factory _MachineActivityModel.fromJson(Map<String, dynamic> json) =
       _$MachineActivityModelImpl.fromJson;
 
   @override
-  DateTime get dateTime;
+  @MillisecondsSinceEpochConverter()
+  DateTime get startTime;
   @override
-  String get status;
+  @MillisecondsSinceEpochConverter()
+  DateTime get endTime;
   @override
-  num? get totalUsage;
+  num get averageCurrent;
   @override
-  num? get electricityUsage;
+  num get kwh;
+  @override
+  num get secondsDuration;
 
   /// Create a copy of MachineActivityModel
   /// with the given fields replaced by the non-null parameter values.

@@ -50,7 +50,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
             child: Column(
               spacing: Styles.defaultPadding,
               children: [
-                _buildChipsWidget(),
+                // _buildChipsWidget(),
                 _buildStatisticsWidget(),
               ],
             ),
@@ -87,11 +87,6 @@ class _StatisticsPageState extends State<StatisticsPage> {
           child: Wrap(
             spacing: Styles.defaultSpacing,
             children: [
-              _buildChipWidget(
-                context.l10n.chopperMachine,
-                isChopperSelected,
-                true,
-              ),
               _buildChipWidget(context.l10n.barn, isChopperSelected, false),
             ],
           ),
@@ -168,7 +163,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
               '${DateFormat('d MMM').format(date)} - ${DateFormat('d MMM').format(endDate)}';
         }
         return SectionWidget(
-          title: AppLocalizations.of(context).statistics,
+          title: 'Statistik Kandang',
           child: Container(
             padding: const EdgeInsets.all(Styles.defaultPadding),
             decoration: BoxDecoration(

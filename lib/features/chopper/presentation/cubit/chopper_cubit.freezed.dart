@@ -16,6 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ChopperState {
+  AsyncValue<num> get totalUsage => throw _privateConstructorUsedError;
+  AsyncValue<num> get thisMonthElectricity =>
+      throw _privateConstructorUsedError;
   AsyncValue<bool> get chopperStatus => throw _privateConstructorUsedError;
   AsyncValue<List<MachineActivityModel>> get activities =>
       throw _privateConstructorUsedError;
@@ -36,10 +39,14 @@ abstract class $ChopperStateCopyWith<$Res> {
       _$ChopperStateCopyWithImpl<$Res, ChopperState>;
   @useResult
   $Res call(
-      {AsyncValue<bool> chopperStatus,
+      {AsyncValue<num> totalUsage,
+      AsyncValue<num> thisMonthElectricity,
+      AsyncValue<bool> chopperStatus,
       AsyncValue<List<MachineActivityModel>> activities,
       AsyncValue<List<MachineActivityModel>> allActivities});
 
+  $AsyncValueCopyWith<num, $Res> get totalUsage;
+  $AsyncValueCopyWith<num, $Res> get thisMonthElectricity;
   $AsyncValueCopyWith<bool, $Res> get chopperStatus;
   $AsyncValueCopyWith<List<MachineActivityModel>, $Res> get activities;
   $AsyncValueCopyWith<List<MachineActivityModel>, $Res> get allActivities;
@@ -60,11 +67,21 @@ class _$ChopperStateCopyWithImpl<$Res, $Val extends ChopperState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? totalUsage = null,
+    Object? thisMonthElectricity = null,
     Object? chopperStatus = null,
     Object? activities = null,
     Object? allActivities = null,
   }) {
     return _then(_value.copyWith(
+      totalUsage: null == totalUsage
+          ? _value.totalUsage
+          : totalUsage // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<num>,
+      thisMonthElectricity: null == thisMonthElectricity
+          ? _value.thisMonthElectricity
+          : thisMonthElectricity // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<num>,
       chopperStatus: null == chopperStatus
           ? _value.chopperStatus
           : chopperStatus // ignore: cast_nullable_to_non_nullable
@@ -78,6 +95,26 @@ class _$ChopperStateCopyWithImpl<$Res, $Val extends ChopperState>
           : allActivities // ignore: cast_nullable_to_non_nullable
               as AsyncValue<List<MachineActivityModel>>,
     ) as $Val);
+  }
+
+  /// Create a copy of ChopperState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AsyncValueCopyWith<num, $Res> get totalUsage {
+    return $AsyncValueCopyWith<num, $Res>(_value.totalUsage, (value) {
+      return _then(_value.copyWith(totalUsage: value) as $Val);
+    });
+  }
+
+  /// Create a copy of ChopperState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AsyncValueCopyWith<num, $Res> get thisMonthElectricity {
+    return $AsyncValueCopyWith<num, $Res>(_value.thisMonthElectricity, (value) {
+      return _then(_value.copyWith(thisMonthElectricity: value) as $Val);
+    });
   }
 
   /// Create a copy of ChopperState
@@ -122,10 +159,16 @@ abstract class _$$ChopperStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {AsyncValue<bool> chopperStatus,
+      {AsyncValue<num> totalUsage,
+      AsyncValue<num> thisMonthElectricity,
+      AsyncValue<bool> chopperStatus,
       AsyncValue<List<MachineActivityModel>> activities,
       AsyncValue<List<MachineActivityModel>> allActivities});
 
+  @override
+  $AsyncValueCopyWith<num, $Res> get totalUsage;
+  @override
+  $AsyncValueCopyWith<num, $Res> get thisMonthElectricity;
   @override
   $AsyncValueCopyWith<bool, $Res> get chopperStatus;
   @override
@@ -147,11 +190,21 @@ class __$$ChopperStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? totalUsage = null,
+    Object? thisMonthElectricity = null,
     Object? chopperStatus = null,
     Object? activities = null,
     Object? allActivities = null,
   }) {
     return _then(_$ChopperStateImpl(
+      totalUsage: null == totalUsage
+          ? _value.totalUsage
+          : totalUsage // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<num>,
+      thisMonthElectricity: null == thisMonthElectricity
+          ? _value.thisMonthElectricity
+          : thisMonthElectricity // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<num>,
       chopperStatus: null == chopperStatus
           ? _value.chopperStatus
           : chopperStatus // ignore: cast_nullable_to_non_nullable
@@ -172,10 +225,16 @@ class __$$ChopperStateImplCopyWithImpl<$Res>
 
 class _$ChopperStateImpl implements _ChopperState {
   const _$ChopperStateImpl(
-      {required this.chopperStatus,
+      {required this.totalUsage,
+      required this.thisMonthElectricity,
+      required this.chopperStatus,
       required this.activities,
       required this.allActivities});
 
+  @override
+  final AsyncValue<num> totalUsage;
+  @override
+  final AsyncValue<num> thisMonthElectricity;
   @override
   final AsyncValue<bool> chopperStatus;
   @override
@@ -185,7 +244,7 @@ class _$ChopperStateImpl implements _ChopperState {
 
   @override
   String toString() {
-    return 'ChopperState(chopperStatus: $chopperStatus, activities: $activities, allActivities: $allActivities)';
+    return 'ChopperState(totalUsage: $totalUsage, thisMonthElectricity: $thisMonthElectricity, chopperStatus: $chopperStatus, activities: $activities, allActivities: $allActivities)';
   }
 
   @override
@@ -193,6 +252,10 @@ class _$ChopperStateImpl implements _ChopperState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChopperStateImpl &&
+            (identical(other.totalUsage, totalUsage) ||
+                other.totalUsage == totalUsage) &&
+            (identical(other.thisMonthElectricity, thisMonthElectricity) ||
+                other.thisMonthElectricity == thisMonthElectricity) &&
             (identical(other.chopperStatus, chopperStatus) ||
                 other.chopperStatus == chopperStatus) &&
             (identical(other.activities, activities) ||
@@ -202,8 +265,8 @@ class _$ChopperStateImpl implements _ChopperState {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, chopperStatus, activities, allActivities);
+  int get hashCode => Object.hash(runtimeType, totalUsage, thisMonthElectricity,
+      chopperStatus, activities, allActivities);
 
   /// Create a copy of ChopperState
   /// with the given fields replaced by the non-null parameter values.
@@ -216,11 +279,17 @@ class _$ChopperStateImpl implements _ChopperState {
 
 abstract class _ChopperState implements ChopperState {
   const factory _ChopperState(
-      {required final AsyncValue<bool> chopperStatus,
+      {required final AsyncValue<num> totalUsage,
+      required final AsyncValue<num> thisMonthElectricity,
+      required final AsyncValue<bool> chopperStatus,
       required final AsyncValue<List<MachineActivityModel>> activities,
       required final AsyncValue<List<MachineActivityModel>>
           allActivities}) = _$ChopperStateImpl;
 
+  @override
+  AsyncValue<num> get totalUsage;
+  @override
+  AsyncValue<num> get thisMonthElectricity;
   @override
   AsyncValue<bool> get chopperStatus;
   @override
