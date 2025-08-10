@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:isacs_mobile/features/pages.dart';
 
 part 'router.gr.dart';

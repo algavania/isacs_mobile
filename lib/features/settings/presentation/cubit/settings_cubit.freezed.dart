@@ -374,7 +374,9 @@ class __$$SettingsStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SettingsStateImpl implements _SettingsState {
+class _$SettingsStateImpl
+    with DiagnosticableTreeMixin
+    implements _SettingsState {
   const _$SettingsStateImpl(
       {required this.machineMaintenance,
       required this.electricityLimit,
@@ -412,8 +414,26 @@ class _$SettingsStateImpl implements _SettingsState {
   final AsyncValue<String> telegramUsername;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SettingsState(machineMaintenance: $machineMaintenance, electricityLimit: $electricityLimit, hotTemperature: $hotTemperature, machineInterval: $machineInterval, electricityPrice: $electricityPrice, maxKwh: $maxKwh, coolLimit: $coolLimit, idealLimit: $idealLimit, hotLimit: $hotLimit, lastTotalUsage: $lastTotalUsage, telegramUsername: $telegramUsername)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SettingsState'))
+      ..add(DiagnosticsProperty('machineMaintenance', machineMaintenance))
+      ..add(DiagnosticsProperty('electricityLimit', electricityLimit))
+      ..add(DiagnosticsProperty('hotTemperature', hotTemperature))
+      ..add(DiagnosticsProperty('machineInterval', machineInterval))
+      ..add(DiagnosticsProperty('electricityPrice', electricityPrice))
+      ..add(DiagnosticsProperty('maxKwh', maxKwh))
+      ..add(DiagnosticsProperty('coolLimit', coolLimit))
+      ..add(DiagnosticsProperty('idealLimit', idealLimit))
+      ..add(DiagnosticsProperty('hotLimit', hotLimit))
+      ..add(DiagnosticsProperty('lastTotalUsage', lastTotalUsage))
+      ..add(DiagnosticsProperty('telegramUsername', telegramUsername));
   }
 
   @override

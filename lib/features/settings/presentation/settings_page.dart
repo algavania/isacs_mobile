@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,12 +9,12 @@ import 'package:isacs_mobile/core/styles.dart';
 import 'package:isacs_mobile/features/settings/presentation/cubit/settings_cubit.dart';
 import 'package:isacs_mobile/injector/injector.dart';
 import 'package:isacs_mobile/l10n/l10n.dart';
+import 'package:isacs_mobile/routes/router.dart';
 import 'package:isacs_mobile/util/extensions.dart';
 import 'package:isacs_mobile/util/validator.dart';
 import 'package:isacs_mobile/widgets/custom_dialog.dart';
 import 'package:isacs_mobile/widgets/custom_text_field.dart';
 import 'package:isacs_mobile/widgets/section_widget.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 @RoutePage()
 class SettingsPage extends StatefulWidget {
@@ -164,63 +165,62 @@ class _SettingsPageState extends State<SettingsPage> {
       data: (s) => s.data.toString(),
     );
 
-    showDialog<void>(context: context, builder: (context) {
-      return CustomDialog(
-        title: context.l10n.heatLimit,
-        description: context.l10n.heatLimitDescription,
-        child: Form(
-          key: _heatLimitFormKey,
-          child: Column(
-            spacing: Styles.defaultSpacing,
-            children: [
-              CustomTextField(
-                controller: _heatLimitCoolController,
-                validator: Validator(context: context).emptyValidator,
-                textInputType: TextInputType.number,
-                inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly,
+    showDialog<void>(
+        context: context,
+        builder: (context) {
+          return CustomDialog(
+            title: context.l10n.heatLimit,
+            description: context.l10n.heatLimitDescription,
+            child: Form(
+              key: _heatLimitFormKey,
+              child: Column(
+                spacing: Styles.defaultSpacing,
+                children: [
+                  CustomTextField(
+                    controller: _heatLimitCoolController,
+                    validator: Validator(context: context).emptyValidator,
+                    textInputType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    label: context.l10n.coolTemperature,
+                    description: context.l10n.coolTemperatureDescription,
+                  ),
+                  CustomTextField(
+                    controller: _heatLimitIdealController,
+                    validator: Validator(context: context).emptyValidator,
+                    textInputType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    label: context.l10n.idealTemperature,
+                    description: context.l10n.idealTemperatureDescription,
+                  ),
+                  CustomTextField(
+                    controller: _heatLimitHotController,
+                    validator: Validator(context: context).emptyValidator,
+                    textInputType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    label: context.l10n.hotTemperature,
+                    description: context.l10n.hotTemperatureDescription,
+                  ),
                 ],
-                label: context.l10n.coolTemperature,
-                description: context.l10n.coolTemperatureDescription,
               ),
-              CustomTextField(
-                controller: _heatLimitIdealController,
-                validator: Validator(context: context).emptyValidator,
-                textInputType: TextInputType.number,
-                inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly,
-                ],
-                label: context.l10n.idealTemperature,
-                description: context.l10n.idealTemperatureDescription,
-              ),
-              CustomTextField(
-                controller: _heatLimitHotController,
-                validator: Validator(context: context).emptyValidator,
-                textInputType: TextInputType.number,
-                inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly,
-                ],
-                label: context.l10n.hotTemperature,
-                description: context.l10n.hotTemperatureDescription,
-              ),
-            ],
-          ),
-        ),
-        proceedAction: () {
-          if (_heatLimitFormKey.currentState?.validate() ?? false) {
-            _cubit.setTemperatureLimits(
-              coolLimit:
-                  num.parse(_heatLimitCoolController.text),
-              idealLimit:
-                  num.parse(_heatLimitIdealController.text),
-              hotLimit:
-                  num.parse(_heatLimitHotController.text),
-            );
-            Navigator.of(context).pop();
-          }
-        },
-      );
-    });
+            ),
+            proceedAction: () {
+              if (_heatLimitFormKey.currentState?.validate() ?? false) {
+                _cubit.setTemperatureLimits(
+                  coolLimit: num.parse(_heatLimitCoolController.text),
+                  idealLimit: num.parse(_heatLimitIdealController.text),
+                  hotLimit: num.parse(_heatLimitHotController.text),
+                );
+                Navigator.of(context).pop();
+              }
+            },
+          );
+        });
   }
 
   void _onTelegramTap() {
@@ -236,25 +236,9 @@ class _SettingsPageState extends State<SettingsPage> {
           descriptionWidget: RichText(
             text: TextSpan(
               style: context.textTheme.bodySmall,
-              text: context.l10n.callMeBotTelegramDescription,
+              text: '${context.l10n.callMeBotTelegramDescription} di bit.ly/isacs-setup',
               children: [
-                TextSpan(
-                  text: ' di sini',
-                  style: context.textTheme.bodySmall?.copyWith(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline,
-                  ),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      final uri =
-                          Uri.parse('https://api2.callmebot.com/txt/login.php');
-                      launchUrl(uri, mode: LaunchMode.externalApplication);
-                    },
-                ),
-                TextSpan(
-                  text: '. ${context.l10n.ignoreIfDone}'
-                )
+                TextSpan(text: '. ${context.l10n.ignoreIfDone}')
               ],
             ),
           ),
