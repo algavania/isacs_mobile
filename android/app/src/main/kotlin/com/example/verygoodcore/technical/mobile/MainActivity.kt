@@ -1,4 +1,4 @@
-package com.example.verygoodcore.isacs_mobile
+package com.interstellar.isacs
 
 import io.flutter.embedding.android.FlutterActivity
 

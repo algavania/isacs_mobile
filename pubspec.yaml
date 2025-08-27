@@ -7,6 +7,7 @@ environment:
   sdk: ^3.5.0
 
 dependencies:
+  flutter_native_splash: ^2.4.4
   another_flushbar: ^1.12.30
   auto_route: ^10.1.0+1
   bloc: ^8.1.4
@@ -51,6 +52,7 @@ dev_dependencies:
   json_serializable: ^6.9.5
   mocktail: ^1.0.4
   very_good_analysis: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
 
 flutter:
   uses-material-design: true
@@ -61,3 +63,18 @@ flutter:
     - assets/images/
     - assets/onboarding/
     - .env
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets/images/logo.png"
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/logo.png
+
+  android_12:
+    image: assets/images/logo.png
+    icon_background_color: "#ffffff"
+
+  web: false
